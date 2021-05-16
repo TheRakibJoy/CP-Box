@@ -1,0 +1,67 @@
+ll fact[N+5];
+void pre()
+{
+    fact[0]=1;
+    fr(i,1,N)
+    {
+        fact[i]=i*fact[i-1];
+        fact[i]%=mod;
+    }
+}
+ll bigmod(ll p,ll q)
+{
+    if(q==0)
+        return 1;
+    if(q&1)
+    {
+        return ((p%mod)*bigmod(p,q-1))%mod;
+    }
+    ll x=bigmod(p,q/2);
+    return (x*x)%mod;
+}
+ll ncr(ll n,ll r)
+{
+    if(n<r)
+        return 0;
+    ll an=1;
+    an*=fact[n];
+    ll d=fact[r];
+    d*=fact[n-r];
+    d%=mod;
+    an*=bigmod(d,mod-2);
+    an%=mod;
+    return an;
+}
+ll phi[N+5];
+void euler()
+{
+    for(ll i=1; i<=N; i++)
+        phi[i]=i;
+    for(ll i=2; i<=N; i++)
+    {
+        if(phi[i]==i)
+        {
+            for(ll j=i; j<=N; j+=i)
+            {
+                phi[j]/=i;
+                phi[j]*=(i-1);
+            }
+        }
+
+    }
+}
+ll com[1001][1001];
+void combination()
+{
+    com[1][1]=1;
+    com[1][0]=1;
+    for(ll i=2; i<=1000; i++)
+    {
+        com[i][0]=1;
+        for(ll j=1; j<=i; j++)
+        {
+            com[i][j]=com[i-1][j]+com[i-1][j-1];
+            com[i][j]%=mod;
+        }
+    }
+}
