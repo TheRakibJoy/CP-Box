@@ -1,0 +1,18 @@
+/*starting with the name of almighty ALLAH*/
+/*solved by RAKIB JOY*/
+// Practice is the only shortcut to improve
+ll par[N+5];
+ll a,b;
+void init()
+{
+   fr(i,1,N) par[i]=i;
+}
+ll get(ll n)
+{
+   if(par[n]==n) return n;
+   return par[n]=get(par[n]);
+}
+void uni(ll a,ll b)
+{
+   par[a]=b;
+}
