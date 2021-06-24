@@ -2,7 +2,6 @@
 /*solved by RAKIB JOY*/
 // Practice is the only shortcut to improve
 ll par[N+5];
-ll a,b;
 void init()
 {
    fr(i,1,N) par[i]=i;
