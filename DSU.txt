@@ -1,6 +1,3 @@
-/*starting with the name of almighty ALLAH*/
-/*solved by RAKIB JOY*/
-// Practice is the only shortcut to improve
 ll par[N+5];
 void init()
 {
