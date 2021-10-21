@@ -55,6 +55,7 @@ void combination()
 {
     com[1][1]=1;
     com[1][0]=1;
+    com[0][0]=1;
     for(ll i=2; i<=1000; i++)
     {
         com[i][0]=1;
