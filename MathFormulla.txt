@@ -1,0 +1,2 @@
+1 + r + r2 + ... + rn = SUM(k=0...n) rk = (1 - rn+1) /(1 - r), and
+r + r2 + r3 + ... + rn = SUM(k=1...n) rk = (r - rn+1)/(1 - r).
