@@ -24,3 +24,16 @@ int RmnQ(int lo,int hi)
     int x=Log[hi-lo+1];
     return min(sptab[lo][x],sptab[hi-(1<<x)+1][x]);
 }
+long long RngSum(int lo,int hi,int n)
+{
+    long long ans=0;
+    for(int j=(int)log2(n*1.0)+1 ; j>=0 ; j--)
+    {
+        if((1<<j) <= hi-lo+1)
+        {
+            ans += sptab[lo][j];
+            lo += (1<<j);
+        }
+    }
+    return ans;
+}
