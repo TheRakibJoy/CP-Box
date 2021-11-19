@@ -26,7 +26,7 @@ int mst(int n)
 {
     sort(e.begin(), e.end());
     init(n);
-    int cnt = 0, s = 0;
+    ll cnt = 0, s = 0;
     for (int i = 0; i < (int)e.size(); i++)
     {
         int u = get(e[i].u);
@@ -35,7 +35,7 @@ int mst(int n)
         {
             uni(u,v);
             cnt++;
-            s += e[i].w;
+            s += (ll)e[i].w;
             if (cnt == n - 1)
                 break;
         }
