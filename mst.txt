@@ -22,7 +22,7 @@ void uni(ll a,ll b)
 {
     par[a]=b;
 }
-int mst(int n)
+ll mst(int n)
 {
     sort(e.begin(), e.end());
     init(n);
