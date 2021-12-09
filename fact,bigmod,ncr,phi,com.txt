@@ -50,6 +50,21 @@ void euler()
 
     }
 }
+int Totient(int num)
+{
+	int ans = num;
+	for(int i = 2; i * i <= num; i++)
+	{
+		if(num % i)
+			continue;
+		while(num % i == 0)
+			num /= i;
+		ans -= ans / i;
+	}
+	if(num > 1)
+		ans -= ans / num;
+	return ans;
+}
 ll com[1001][1001];
 void combination()
 {
