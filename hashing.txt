@@ -16,8 +16,8 @@ int BigMod(long long p, long long q, const int mod)
 
 const int MOD1 = 127657753, MOD2 = 987654319;
 const int b1 = 137, b2 = 277;
-int ip1, ip2;
-pair<int, int> pw[N], ipw[N];
+int inp1, inp2;
+pair<int, int> pw[N], inpw[N];
 //Template from YouKnow
 void precalc()
 {
@@ -27,45 +27,45 @@ void precalc()
         pw[i].first = 1LL * pw[i - 1].first * b1 % MOD1;
         pw[i].second = 1LL * pw[i - 1].second * b2 % MOD2;
     }
-    ip2 = BigMod(b2, MOD2 - 2, MOD2);
-    ip1 = BigMod(b1, MOD1 - 2, MOD1);
-    ipw[0] =  {1, 1};
+    inp2 = BigMod(b2, MOD2 - 2, MOD2);
+    inp1 = BigMod(b1, MOD1 - 2, MOD1);
+    inpw[0] =  {1, 1};
     for (int i = 1; i < N; i++)
     {
-        ipw[i].first = 1LL * ipw[i - 1].first * ip1 % MOD1;
-        ipw[i].second = 1LL * ipw[i - 1].second * ip2 % MOD2;
+        inpw[i].first = 1LL * inpw[i - 1].first * inp1 % MOD1;
+        inpw[i].second = 1LL * inpw[i - 1].second * inp2 % MOD2;
     }
 
 }
 struct Hashing
 {
-    int n;
+    int sz;
     string s; // 0 - indexed string
-    vector<pair<int, int>> hs; // 1 - indexed vector
+    vector<pair<int, int>> h_tab; // 1 - indexed vector
     Hashing() {}
     Hashing(string _ss)
     {
-        n = _ss.size();
+        sz = _ss.size();
         s = _ss;
-        hs.emplace_back(0, 0);
-        for (int i = 0; i < n; i++)
+        h_tab.emplace_back(0, 0);
+        for (int i = 0; i < sz; i++)
         {
             pair<int, int> p;
-            p.first = (hs[i].first + 1LL * pw[i].first * s[i] % MOD1) % MOD1;
-            p.second = (hs[i].second + 1LL * pw[i].second * s[i] % MOD2) % MOD2;
-            hs.push_back(p);
+            p.first = (h_tab[i].first + 1LL * pw[i].first * s[i] % MOD1) % MOD1;
+            p.second = (h_tab[i].second + 1LL * pw[i].second * s[i] % MOD2) % MOD2;
+            h_tab.push_back(p);
         }
     }
     pair<int, int> get_hash_value(int lo, int hi)   // 1 - indexed
     {
-        assert(1 <= lo && lo <= hi && hi <= n);
+        assert(1 <= lo && lo <= hi && hi <= sz);
         pair<int, int> ans;
-        ans.first = (hs[hi].first - hs[lo - 1].first + MOD1) * 1LL * ipw[lo - 1].first % MOD1;
-        ans.second = (hs[hi].second - hs[lo - 1].second + MOD2) * 1LL * ipw[lo - 1].second % MOD2;
+        ans.first = (h_tab[hi].first - h_tab[lo - 1].first + MOD1) * 1LL * inpw[lo - 1].first % MOD1;
+        ans.second = (h_tab[hi].second - h_tab[lo - 1].second + MOD2) * 1LL * inpw[lo - 1].second % MOD2;
         return ans;
     }
     pair<int, int> get_hash_value()
     {
-        return get_hash_value(1, n);
+        return get_hash_value(1, sz);
     }
 };
