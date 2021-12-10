@@ -8,16 +8,20 @@ void pre()
         fact[i]%=mod;
     }
 }
-ll bigmod(ll p,ll q,ll mod)
+int BigMod(long long p, long long q, const int mod)
 {
-    if(q==0)
-        return 1;
-    if(q&1)
+    int ans = 1 % mod;
+    p %= mod;
+    if (p < 0)
+        p += mod;
+    while (q)
     {
-        return ((p%mod)*bigmod(p,q-1))%mod;
+        if (q & 1)
+            ans = (long long) ans * p % mod;
+        p = (long long) p * p % mod;
+        q >>= 1;
     }
-    ll x=bigmod(p,q/2);
-    return (x*x)%mod;
+    return ans;
 }
 ll ncr(ll n,ll r)
 {
