@@ -8,7 +8,7 @@ void pre()
         fact[i]%=mod;
     }
 }
-ll bigmod(ll p,ll q)
+ll bigmod(ll p,ll q,ll mod)
 {
     if(q==0)
         return 1;
