@@ -15,7 +15,7 @@ int BigMod(long long p, long long q, const int mod)
 }
 
 const int MOD1 = 127657753, MOD2 = 987654319;
-const int b1 = 137, b2 = 277;
+const int b1 = 141, b2 = 277;
 int inp1, inp2;
 pair<int, int> pw[N], inpw[N];
 //Template from YouKnow
