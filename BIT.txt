@@ -25,8 +25,8 @@ struct BIT
     }
     void update(int lf, int rt, DT val)
     {
-        upd(lf, val);
-        upd(rt + 1, -val);
+        update(lf, val);
+        update(rt + 1, -val);
     }
     DT query(int l, int r)
     {
