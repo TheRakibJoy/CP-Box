@@ -30,6 +30,6 @@ struct BIT
     }
     DT query(int l, int r)
     {
-        return query(r) - query(l - 1);
+        return presum(r) - presum(l - 1);
     }
 };
