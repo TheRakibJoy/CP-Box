@@ -16,7 +16,7 @@ void Init_LCA(int n)
         }
     }
 }
-int get_LCA(int n,int p,int q)
+int get_LCA(int p,int q)
 {
     if(lvl[p] < lvl[q])
         swap(p,q);
