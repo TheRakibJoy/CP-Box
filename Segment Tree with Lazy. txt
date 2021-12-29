@@ -42,20 +42,20 @@ struct Stree
         build(rt, mid + 1, hi);
         uthao(nd);
     }
-    void update(int nd, int lo, int hi, int i, int j, long long v)
+    void update(int nd, int lo, int hi, int i, int j, long long val)
     {
         push(nd, lo, hi);
         if (j < lo || hi < i)
             return;
         if (i <= lo && hi <= j)
         {
-            lazy[nd] = v; //set lazy
+            lazy[nd] = val; //set lazy
             push(nd, lo, hi);
             return;
         }
         int mid = (lo + hi) >> 1;
-        update(lf, lo, mid, i, j, v);
-        update(rt, mid + 1, hi, i, j, v);
+        update(lf, lo, mid, i, j, val);
+        update(rt, mid + 1, hi, i, j, val);
         uthao(nd);
     }
     long long query(int nd, int lo, int hi, int i, int j)
