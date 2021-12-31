@@ -5,7 +5,7 @@ void pre()
     fr(i,1,N)
     {
         fact[i]=i*fact[i-1];
-        fact[i]%=mod;
+        fact[i]%=MOD;
     }
 }
 int BigMod(long long p, long long q, const int mod)
@@ -31,9 +31,9 @@ ll ncr(ll n,ll r)
     an*=fact[n];
     ll d=fact[r];
     d*=fact[n-r];
-    d%=mod;
-    an*=bigmod(d,mod-2);
-    an%=mod;
+    d%=MOD;
+    an*=BigMod(d,MOD-2,MOD);
+    an%=MOD;
     return an;
 }
 ll phi[N+5];
