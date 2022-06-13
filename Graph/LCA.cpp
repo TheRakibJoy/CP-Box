@@ -1,8 +1,12 @@
-const int sz=100005;
+const int sz=200005;
 int sptab[sz][22],lvl[sz],par[sz];
 void Init_LCA(int n)
 {
-    memset(sptab,-1,sizeof sptab);
+    for(int i=0; i<=n; i++)
+    {
+        for(int j=0; j<22; j++)
+            sptab[i][j]=-1;
+    }
     for(int i=1 ; i<=n ; i++)
         sptab[i][0] = par[i];
     for(int j=1 ; (1<<j)<=n ; j++)
