@@ -6,3 +6,5 @@ XOR of the XOR’s of all subsets=if(n==1) s[0] ,else 0;
 Artithmatic Sequence :
  n'th term - a+(n-1)*d.
  sum of n numbers - n*(2*a+(n-1)*d)/2.
+*For all i=0 to k,
+Summation of (n+i) C (n) =(n+k+1) C (n+1)*
