@@ -1,9 +1,10 @@
 struct DSU
 {
-    vector<int>par,sz;
+    vector<int>par,sz,rnk;
     DSU(int n)
     {
         par.assign(n+1,0);
+        rnk.assign(n+1,0);
         sz.assign(n+1,1);
         for(int i=1; i<=n; i++)
             par[i]=i;
@@ -20,9 +21,11 @@ struct DSU
         y=get_parent(y);
         if(x!=y)
         {
-            if(sz[x]<sz[y])
+            if(rnk[x]>rnk[y])
                 swap(x,y);
-            par[y]=x;
+            par[x]=y;
+            if(rnk[x]==rnk[y])
+                rnk[y]++;
             sz[x]+=sz[y];
             sz[y]=0;
         }
