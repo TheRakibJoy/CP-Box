@@ -1,78 +1,78 @@
 struct suf_array
 {
     string s;
-    int n;
-    vector<int>p,c;
+    int sz;
+    vector<int>st,rnk;
     suf_array() {}
     suf_array(string &ss)
     {
         s=ss;
         s+='$';
-        n=s.size();
-        p.resize(n);
-        c.resize(n);
+        sz=s.size();
+        st.resize(sz);
+        rnk.resize(sz);
     }
     void count_sort()
     {
-        vector<int>cnt(n);
-        for(auto x:c)
+        vector<int>cnt(sz);
+        for(auto x:rnk)
             cnt[x]++;
-        vector<int>p_new(n);
-        vector<int>pos(n);
+        vector<int>st_new(sz);
+        vector<int>pos(sz);
         pos[0]=0;
-        for(int i=1; i<n; i++)
+        for(int i=1; i<sz; i++)
             pos[i]=pos[i-1]+cnt[i-1];
-        for(auto x:p)
+        for(auto x:st)
         {
-            int i=c[x];
-            p_new[pos[i]]=x;
+            int i=rnk[x];
+            st_new[pos[i]]=x;
             pos[i]++;
         }
-        p=p_new;
+        st=st_new;
     }
     void build()
     {
         {
             ///for k=0;
-            vector<pair<char,int>>a(n);
-            for(int i=0; i<n; i++)
-                a[i]= {s[i],i};
-            sort(a.begin(),a.end());
-            for(int i=0; i<n; i++)
-                p[i]=a[i].second;
-            c[p[0]]=0;
-            for(int i=1; i<n; i++)
+            vector<pair<char,int>>tm(sz);
+            for(int i=0; i<sz; i++)
+                tm[i]= {s[i],i};
+            sort(tm.begin(),tm.end());
+            for(int i=0; i<sz; i++)
+                st[i]=tm[i].second;
+            rnk[st[0]]=0;
+            for(int i=1; i<sz; i++)
             {
-                if(a[i].first==a[i-1].first)
-                    c[p[i]]=c[p[i-1]];
+                if(tm[i].first==tm[i-1].first)
+                    rnk[st[i]]=rnk[st[i-1]];
                 else
-                    c[p[i]]=c[p[i-1]]+1;
+                    rnk[st[i]]=rnk[st[i-1]]+1;
 
             }
         }
-        int k=0;
-        while((1<<k)<n)
+        int k=1;
+        while(k<sz)
         {
-            for(int i=0; i<n; i++)
-                p[i]=(p[i]-(1<<k)+n)%n;
+            for(int i=0; i<sz; i++)
+                st[i]=(st[i]-k+sz)%sz;
             count_sort();
-            vector<int>c_new(n);
-            c_new[p[0]]=0;
-            for(int i=1; i<n; i++)
+            vector<int>rnk_new(sz);
+            rnk_new[st[0]]=0;
+            for(int i=1; i<sz; i++)
             {
-                pair<int,int>prev= {c[p[i-1]],c[(p[i-1]+(1<<k))%n]};
-                pair<int,int>now= {c[p[i]],c[(p[i]+(1<<k))%n]};
-                if(now==prev)
-                    c_new[p[i]]=c_new[p[i-1]];
+                pair<int,int>pre= {rnk[st[i-1]],rnk[(st[i-1]+k)%sz]};
+                pair<int,int>cr= {rnk[st[i]],rnk[(st[i]+k)%sz]};
+                if(cr==pre)
+                    rnk_new[st[i]]=rnk_new[st[i-1]];
                 else
-                    c_new[p[i]]=c_new[p[i-1]]+1;
+                    rnk_new[st[i]]=rnk_new[st[i-1]]+1;
             }
-            c=c_new;
-            k++;
+            rnk=rnk_new;
+            k*=2;
         }
     }
     vector<int> get()
     {
-        return p;
+        return st;
     }
 };
