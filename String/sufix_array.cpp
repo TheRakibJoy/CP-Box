@@ -71,6 +71,37 @@ struct suf_array
             k*=2;
         }
     }
+    string getsub(int i,int n)
+    {
+        return s.substr(i,min(n,sz-i));
+    }
+    int how_many(string &ss)
+    {
+        int szz=ss.size();
+        int lo=0,hi=sz;
+        while(lo+1<hi)
+        {
+            int mid=(lo+hi)>>1;
+            string t=getsub(st[mid],szz);
+            if(t<=ss)
+                lo=mid;
+            else
+                hi=mid;
+        }
+        if(getsub(st[lo],szz)!=ss)
+            return 0;
+        int l=0,r=sz-1;
+        while(l<r)
+        {
+            int mid=(l+r)>>1;
+            string t=getsub(st[mid],szz);
+            if(t>=ss)
+                r=mid;
+            else
+                l=mid+1;
+        }
+        return lo-r+1;
+    }
     vector<int> get()
     {
         return st;
