@@ -2,7 +2,7 @@ struct suf_array
 {
     string s;
     int sz;
-    vector<int>st,rnk;
+    vector<int>st,rnk,lcp;
     suf_array() {}
     suf_array(string &ss)
     {
@@ -11,6 +11,7 @@ struct suf_array
         sz=s.size();
         st.resize(sz);
         rnk.resize(sz);
+        lcp.resize(sz);
     }
     void count_sort()
     {
@@ -105,5 +106,22 @@ struct suf_array
     vector<int> get()
     {
         return st;
+    }
+    void make_lcp()
+    {
+        int k=0;
+        for(int i=0; i<sz-1; i++)
+        {
+            int pin=rnk[i];
+            int j=st[pin-1];
+            while(s[i+k]==s[j+k])
+                k++;
+            lcp[pin]=k;
+            k=max(k-1,0);
+        }
+    }
+    vector<int> get_lcp()
+    {
+        return lcp;
     }
 };
