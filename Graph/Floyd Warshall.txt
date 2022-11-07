@@ -1,0 +1,2 @@
+1.If dis[x][x]<0 then there is a cycle.
+2.If there is negtive edge then you should be extra careful and for every update two values must be smaller than infinite.
