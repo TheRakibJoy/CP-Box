@@ -55,7 +55,7 @@ struct Palindromic_tree
         for(int i=id; i>2; i--)
         {
             t[t[i].link].fre+=t[i].fre;
-            an+=t[i].fre;
+            ans+=t[i].fre;
         }
         return ans;
     }
