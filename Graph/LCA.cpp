@@ -42,3 +42,14 @@ int get_LCA(int p,int q)
     }
     return par[p];
 }
+int get_kth(ll n,ll k)
+{
+    ll Log=log2(k);
+    ll p=n;
+    for(int i=0; i<=Log; i++)
+    {
+        if(k&(1<<i))
+            p=sptab[p][i];
+    }
+    return p;
+}
