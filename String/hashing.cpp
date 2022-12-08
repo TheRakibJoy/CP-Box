@@ -69,3 +69,10 @@ struct Hashing
         return get_hash_value(1, sz);
     }
 };
+pair<int,int> mer(pii x,pii y,int z)
+{
+    pii an;
+    an.F=((1LL*x.F*pw[z].F)%MOD1+y.F)%MOD1;
+    an.S=((1LL*x.S*pw[z].S)%MOD2+y.S)%MOD2;
+    return an;
+}
