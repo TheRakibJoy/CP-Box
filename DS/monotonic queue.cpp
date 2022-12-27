@@ -1,3 +1,4 @@
+//Samllest element is in the front
 struct monotonic_queue
 {
     deque<pair<int,int> >dq;
