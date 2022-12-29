@@ -30,7 +30,6 @@ struct node
         node *ret = new node(val);
         ret -> lf = lf -> update(lo, mid, idx, v);
         ret -> rt = rt -> update(mid+1, hi, idx, v);
-
         ret -> val = ret -> lf -> val + ret -> rt -> val;
         return ret;
     }
