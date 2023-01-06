@@ -1,3 +1,5 @@
+//here par=partition no
+//opL=optimal L
 void d_and_con(int par,int l,int r,int opL,int opR)
 {
     if(l>r)
