@@ -36,19 +36,18 @@ ll ncr(ll n,ll r)
     an%=MOD;
     return an;
 }
-ll phi[N+5];
+int phi[N+1];
 void euler()
 {
-    for(ll i=1; i<=N; i++)
+    for(int i=1; i<=N; i++)
         phi[i]=i;
-    for(ll i=2; i<=N; i++)
+    for(int i=2; i<=N; i++)
     {
         if(phi[i]==i)
         {
             for(ll j=i; j<=N; j+=i)
             {
-                phi[j]/=i;
-                phi[j]*=(i-1);
+                phi[j]-=(phi[j]/i);
             }
         }
 
