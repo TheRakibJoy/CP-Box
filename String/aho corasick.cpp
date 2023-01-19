@@ -78,7 +78,7 @@ struct Aho_vajita
                     q.push(t[u].nxt[c]);
         }
     }
-    void Search(string s) /// number of occurences
+    void Search(string &s) /// number of occurences
     {
         int cur=0;
         for(int i=0; i<s.size(); i++)
