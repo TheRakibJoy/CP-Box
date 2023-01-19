@@ -1,6 +1,6 @@
 //template from rkb_rd
 const int option = 26,base = 'a';
-struct Aho_vajita
+struct Aho_vatija
 {
     struct node
     {
@@ -19,7 +19,7 @@ struct Aho_vajita
     vector<node>t;
     stack<int>stk;  /// storing nodes according to their depth
 
-    Aho_vajita()
+    Aho_vatija()
     {
         tt=0;
         t=vector<node>(1);
