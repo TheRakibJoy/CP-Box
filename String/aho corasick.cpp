@@ -51,31 +51,31 @@ struct Aho_vajita
 
         while(!q.empty())
         {
-            int u=q.front();
-            stk.push(u);
+            int cur=q.front();
+            stk.push(cur);
             q.pop();
             /// suffix link
-            if(u==0||t[u].par==0)
-                t[u].link=0;
+            if(cur==0||t[cur].par==0)
+                t[cur].link=0;
             else
-                t[u].link=t[t[t[u].par].link].go[t[u].ech-'a'];
+                t[cur].link=t[t[t[cur].par].link].go[t[cur].ech-'a'];
             /// exit link
-            if(u==0||t[u].par==0)
-                t[u].exit=0;
-            else if(t[t[u].link].leaf)
-                t[u].exit=t[u].link;
+            if(cur==0||t[cur].par==0)
+                t[cur].exit=0;
+            else if(t[t[cur].link].leaf)
+                t[cur].exit=t[cur].link;
             else
-                t[u].exit=t[t[u].link].exit;
+                t[cur].exit=t[t[cur].link].exit;
             /// update go
             for(int c=0; c<option; c++)
-                if(t[u].nxt[c])
-                    t[u].go[c]=t[u].nxt[c];
+                if(t[cur].nxt[c])
+                    t[cur].go[c]=t[cur].nxt[c];
                 else
-                    t[u].go[c]=(u==0)?0:t[t[u].link].go[c];
+                    t[cur].go[c]=(cur==0)?0:t[t[cur].link].go[c];
 
             for(int c=0; c<option; c++)
-                if(t[u].nxt[c])
-                    q.push(t[u].nxt[c]);
+                if(t[cur].nxt[c])
+                    q.push(t[cur].nxt[c]);
         }
     }
     void Search(string &s) /// number of occurences
