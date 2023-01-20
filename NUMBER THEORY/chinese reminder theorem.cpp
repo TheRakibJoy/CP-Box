@@ -1,44 +1,55 @@
-using T= long long;// __int128 may needed
+using T=__int128;//__int128 usable
 // ax + by = __gcd(a, b)
-ll extended_euclid(ll a, ll b, ll &x, ll &y)
+// returns __gcd(a, b)
+T extended_euclid(T a, T b, T &x, T &y)
 {
-	if (b == 0)
-	{
-		x = 1, y = 0;
-		return a;
-	}
-	ll xx, yy;
-	ll g = extended_euclid(b, a % b, xx, yy);
-	x = yy;
-	y = xx - yy * (a / b);
-	return g;
+    T xx = y = 0;
+    T yy = x = 1;
+    while (b)
+    {
+        T q = a / b;
+        T t = b;
+        b = a % b;
+        a = t;
+        t = xx;
+        xx = x - q * xx;
+        x = t;
+        t = yy;
+        yy = y - q * yy;
+        y = t;
+    }
+    return a;
 }
-/** Return {-1,-1} if invalid input.
-    Otherwise, returns {x,L}, where x is the solution unique to mod L
-*/
-pair<T, T> CRT( vector<T> A, vector<T> M )
+// finds x such that x % m1 = a1, x % m2 = a2.
+// m1 and m2 may not be coprime
+// here, x is unique modulo m = lcm(m1, m2).
+// returns (x, m). on failure, m = -1.
+pair<ll, T> CRT( vector<ll> A, vector<ll> M )
 {
     if(A.size() != M.size())
-        return {-1,-1}; /** Invalid input*/
-    T n = A.size();
+        return {0,-1}; /** Invalid input*/
+
+    int n = A.size();
+
     T a1 = A[0];
     T m1 = M[0];
     /** Initially x = a_0 (mod m_0)*/
+
     /** Merge the solution with remaining equations */
-    for ( T i = 1; i < n; i++ )
+    for ( int i = 1; i < n; i++ )
     {
         T a2 = A[i];
         T m2 = M[i];
-        /** Merge the two equations*/
         T p, q;
-        extended_euclid(m1, m2, p, q);
-        /** We need to be careful about overflow, but I did not bother about overflow here to keep the code simple.*/
-        T x = (a1*m2*q + a2*m1*p) % (m1*m2);
-        /** Merged equation*/
-        a1 = x;
-        m1 = m1 * m2;
+        T g = extended_euclid(m1, m2, p, q);
+        if (a1 % g != a2 % g)
+            return make_pair(0, -1);
+        T m = m1 / g * m2;
+        p = (p % m + m) % m;
+        q = (q % m + m) % m;
+        T x=(p * a2 % m * (m1 / g) % m + q * a1 % m * (m2 / g) % m) %  m;
+        a1=x;
+        m1=m;
     }
-    if (a1 < 0)
-        a1 += m1; /** Result is not suppose to be negative*/
     return {a1, m1};
 }
