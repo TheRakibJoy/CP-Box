@@ -26,8 +26,8 @@ struct DSU
             par[x]=y;
             if(rnk[x]==rnk[y])
                 rnk[y]++;
-            sz[x]+=sz[y];
-            sz[y]=0;
+            sz[y]+=sz[x];
+            sz[x]=0;
         }
     }
     int get_size(int n)
