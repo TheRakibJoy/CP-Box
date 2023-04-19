@@ -43,7 +43,7 @@ struct MOS_UP
     MOS_UP(int n)
     {
         this->n=n;
-        v.assign(n,0);
+        v.assign(n+1,0);
         sz=2*powl(n,0.666666666667);
     }
     void add(int i)
@@ -84,7 +84,7 @@ struct MOS_UP
     }
     void Solve()
     {
-        L=1,R=0,T=(int)up.size()-1;
+        L=1,R=0,T=(int)up.size()-1;//T=index
         an=0;
         sort(q.begin(),q.end());
         vector<long long>ans(q.size());
