@@ -2,10 +2,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main() {
-    int i, j, x, n, m;
     string s;
     cin >> s;
-    n = s.size();
+    int n = s.size();
     vector<int> ep(n);  // maximum even length palindrome centered at i
     // here ep[i]=the palindrome has ep[i]-1 right characters from i
     // e.g. for abba, ep[2]=2;
