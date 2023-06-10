@@ -1,5 +1,7 @@
 //ax+by=gcd(a,b)
 //finds me x and y
+//x'=x+b/g
+//y'=y+a/g
 int gcd(int a, int b, int& x, int& y) {
     if (b == 0) {
         x = 1;
