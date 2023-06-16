@@ -1,3 +1,7 @@
+/*Notes-
+x+y==n and gcd(x,y)==1, number of pairs (x,y)=phi(n)
+Sum of Phi(n/d) ,where d is a divisor is = n
+*/	
 int phi[N+1];
 void euler()
 {
