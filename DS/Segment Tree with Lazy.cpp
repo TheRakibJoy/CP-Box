@@ -6,8 +6,6 @@ struct Stree
     long long t[4 * N], lazy[4 * N];
     Stree()
     {
-        memset(t, 0, sizeof t);
-        memset(lazy, 0, sizeof lazy);
     }
     inline void push(int nd, int lo, int hi)
     {
