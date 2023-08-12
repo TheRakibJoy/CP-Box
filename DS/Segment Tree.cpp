@@ -7,7 +7,7 @@ struct Stree
     static const int inf = -1e9;
     Stree()
     {
-        memset(t, 0, sizeof t);
+        
     }
     void build(int nd, int lo, int hi)
     {
