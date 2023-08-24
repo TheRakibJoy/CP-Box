@@ -95,7 +95,7 @@ struct Cool_Bitset {
          if (bits[i] != 0)
             return 64 * i + __builtin_ctzll(bits[i]);
  
-      return -1;
+      return INT_MAX;
    }
  
    Cool_Bitset& operator&=(const Cool_Bitset &other) {
