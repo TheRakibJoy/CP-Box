@@ -1,3 +1,4 @@
+//For multiple test case, Never forget to clear these things
 int T, low[N], dis[N], art[N];
 vector<int> adj[N];
 void dfsArt(int u, int par = 0) {
