@@ -150,7 +150,7 @@ int query(int u, int v)
 	int l = get_LCA(u, v);
 	int ans = go_up(u, l);
 	if (v != l)
-		ans = max(ans, query(v, get_kth(v, lvl[v] - lvl[l] - 1)));
+		ans = max(ans, go_up(v, get_kth(v, lvl[v] - lvl[l] - 1)));
 	return ans;
 }
 void solve()
